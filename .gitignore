@@ -1,0 +1,53 @@
+# Build results
+/bin/
+/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.cache
+*.pdb
+
+# VS Code settings
+.vscode/
+.vs/
+
+# Rider settings
+.idea/
+
+# NuGet packages (unless you want to include .nupkg for others)
+*.nupkg
+/packages/
+/lib/
+
+# Logs
+*.log
+
+# User-specific files
+*.userprefs
+*.csproj.user
+
+# Backup files
+*~
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Unity specific
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+MemoryCaptures/
+obj/
+
+# JetBrains Rider
+.idea/
+
+# Ignore language model files (remove if you want to keep them in repo!)
+LanguageModels/
