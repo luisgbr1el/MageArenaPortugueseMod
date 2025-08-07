@@ -32,7 +32,7 @@ Este mod traduce los **casteos de voz** de Mage Arena al español, permitiendo i
 ## 💬 **¿Te gustaría nuevos casteos o variantes?**
 
 ¡Colabora!  
-Puedes abrir un [issue](AQUÍ_TU_URL_DE_GITHUB/issues) o sugerir variantes y nuevas traducciones para futuros lanzamientos.  
+Puedes abrir un [issue](https://github.com/S3B4S5C/MageArenaSpanishVoiceMod/issues) o sugerir variantes y nuevas traducciones para futuros lanzamientos.  
 ¿Quieres añadir soporte para otros dialectos, sinónimos o hechizos personalizados? ¡Déjanos tu comentario!
 
 ---
