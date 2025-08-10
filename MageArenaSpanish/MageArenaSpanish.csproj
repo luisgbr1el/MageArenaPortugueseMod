@@ -43,6 +43,10 @@
     <Reference Include="BlackMagicAPI">
       <HintPath>C:\Users\sebas\AppData\Roaming\Thunderstore Mod Manager\DataFolder\MageArena\profiles\hola\BepInEx\plugins\D1GQ-BlackMagicAPI\BlackMagicAPI\BlackMagicAPI.dll</HintPath>
     </Reference>
+    <Reference Include="DissonanceVoip, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Juegos piratas\Mage Arena\MageArena_Data\Managed\DissonanceVoip.dll</HintPath>
+    </Reference>
     <Reference Include="FishNet.CodeAnalysis">
       <HintPath>..\..\..\..\..\Juegos piratas\Mage Arena\MageArena_Data\Managed\FishNet.CodeAnalysis.dll</HintPath>
     </Reference>
@@ -77,7 +81,7 @@
   <ItemGroup>
     <Compile Include="MageArenaSpanishVoiceMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpanishModelController.cs" />
+    <Compile Include="SetupModelProviderPatch.cs" />
     <Compile Include="VoiceControlListenerPatch.cs" />
   </ItemGroup>
   <ItemGroup>
