@@ -17,12 +17,10 @@ namespace MageArenaSpanishVoice.Patches
     {
 
         [HarmonyPatch("OnStartClient")]
-        [HarmonyPrefix]
-        private static bool OnStartClient_Prefix(VoiceControlListener __instance)
+        [HarmonyPostfix]
+        private static void OnStartClient_Postfix(VoiceControlListener __instance)
         {
             __instance.StartCoroutine(VoiceControlListenerPatch.CoWaitGetPlayer(__instance));
-            __instance.SpellPages = new List<ISpellCommand>();
-            return false;
         }
 
         private static IEnumerator CoWaitGetPlayer(VoiceControlListener __instance)
@@ -47,15 +45,16 @@ namespace MageArenaSpanishVoice.Patches
             yield return null;
 
             var sr = GetOrBindSpeechRecognizer(__instance);
+
             if (sr == null)
             {
                 MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("SpeechRecognizer not found.");
                 yield break;
             }
 
-            addSpellsToVocabulary(sr); // usa tu función existente
+            addSpellsToVocabulary(sr);
 
-            sr.ResultReady.RemoveAllListeners(); // evita doble binding si se reinicia
+            sr.ResultReady.RemoveAllListeners();
             sr.ResultReady.AddListener((Result r) =>
             {
                 try
@@ -68,25 +67,22 @@ namespace MageArenaSpanishVoice.Patches
                 }
             });
 
-            float t = 0f;
-            while ((__instance.SpellPages == null || __instance.SpellPages.Count == 0) && t < 2f)
-            {
-                yield return null;
-                t += Time.deltaTime;
-            }
-
             sr.StartProcessing();
 
             while (__instance.isActiveAndEnabled)
             {
                 yield return new WaitForSeconds(30f);
-                var vbt = vbtRef(__instance);
-                if (vbt != null && !vbt.IsTransmitting)
+                var vbt = GetOrBindVbt(__instance);
+                var currentSr = GetOrBindSpeechRecognizer(__instance); 
+
+                if (currentSr != null && vbt != null && !vbt.IsTransmitting)
                 {
-                    sr.StopProcessing();
+                    try { currentSr.StopProcessing(); }
+                    catch (ObjectDisposedException) { }
                     __instance.StartCoroutine((IEnumerator)restartsrMethod.Invoke(__instance, null));
                 }
             }
+
         }
 
         private static string modelName = "vosk-model-small-es-0.42";
@@ -127,6 +123,10 @@ namespace MageArenaSpanishVoice.Patches
                 if (kv.Key.Any(keyword => res.Contains(keyword)))
                     kv.Value(__instance);
             }
+
+            var pages = __instance.SpellPages;
+            var count = pages == null ? -1 : pages.Count;
+            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning($"SpellPages count = {count}");
 
             foreach (ISpellCommand spellPage in __instance.SpellPages)
             {
@@ -176,46 +176,129 @@ namespace MageArenaSpanishVoice.Patches
             sr.StartProcessing();
         }
 
+        private static readonly FieldInfo ResetMicCooldownField =
+            AccessTools.Field(typeof(VoiceControlListener), "resetmiccooldown");
 
-
-/*        [HarmonyPatch("resetmiclong")]
-        [HarmonyPrefix]
-        private static bool ResetMicLongPrefix(VoiceControlListener __instance, ref IEnumerator __result)
-        {
-            __result = ModifiedResetMicLong(__instance);
-            return false;
-        }
-
-        private static IEnumerator ModifiedResetMicLong(VoiceControlListener instance)
-        {
-            var sr = GetOrBindSpeechRecognizer(instance);
-            if (sr != null) sr.StopProcessing();
-
-            yield return new WaitForSeconds(1f);
-
-            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning("MIC RESET");
-            instance.StartCoroutine((IEnumerator)restartsrMethod.Invoke(instance, null));
-            yield break;
-        }
+        private static readonly FieldInfo SrField = AccessTools.Field(typeof(VoiceControlListener), "sr");
 
         [HarmonyPatch("restartsr")]
         [HarmonyPrefix]
         private static bool RestartSrPrefix(VoiceControlListener __instance, ref IEnumerator __result)
         {
-            __result = SafeRestartSr(__instance);
+            __result = CoRestartSr(__instance);
             return false;
         }
 
-        private static IEnumerator SafeRestartSr(VoiceControlListener instance)
+        private static IEnumerator CoRestartSr(VoiceControlListener inst)
         {
-            var sr = GetOrBindSpeechRecognizer(instance);
-            if (sr != null) sr.StopProcessing();
+            var sr = GetOrBindSpeechRecognizer(inst);
+            if (sr == null) yield break;
 
-            // Un frame de respiro y reiniciar
-            yield return null;
-            instance.StartCoroutine((IEnumerator)restartsrMethod.Invoke(instance, null));
-            yield break;
-        }*/
+            while (sr.State != 0)
+                yield return null;
+
+            sr.StartProcessing();
+        }
+
+
+        [HarmonyPatch("resetmic")]
+        [HarmonyPrefix]
+        private static bool ResetMicPrefix(VoiceControlListener __instance)
+        {
+            // igual que el original con cooldown
+            if (ResetMicCooldownField != null)
+            {
+                var last = (float)(ResetMicCooldownField.GetValue(__instance) ?? 0f);
+                if (Time.time - last > 10f)
+                {
+                    ResetMicCooldownField.SetValue(__instance, Time.time);
+                    __instance.StartCoroutine(CoResetMicLong(__instance));
+                }
+            }
+            else
+            {
+                __instance.StartCoroutine(CoResetMicLong(__instance));
+            }
+            return false;
+        }
+
+        [HarmonyPatch("resetmiclong")]
+        [HarmonyPrefix]
+        private static bool ResetMicLongPrefix(VoiceControlListener __instance, ref IEnumerator __result)
+        {
+            __result = CoResetMicLong(__instance);
+            return false;
+        }
+
+        private static IEnumerator CoResetMicLong(VoiceControlListener instance)
+        {
+            var oldSr = GetOrBindSpeechRecognizer(instance);
+            if (oldSr != null)
+            {
+                try { oldSr.StopProcessing(); }
+                catch (ObjectDisposedException) { }
+                catch (Exception e) { MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("StopProcessing old SR: " + e.Message); }
+            }
+
+            try { SrField?.SetValue(instance, null); } catch { }
+
+            yield return new WaitForSeconds(0.5f);
+
+            if (oldSr != null)
+                UnityEngine.Object.Destroy(oldSr);
+
+            yield return new WaitForSeconds(0.5f);
+
+            var newSr = instance.gameObject.AddComponent<SpeechRecognizer>();
+
+            try { SrField?.SetValue(instance, newSr); } catch { }
+
+            var source = instance.GetComponent<DissonanceSpeechSource>()
+                         ?? instance.gameObject.AddComponent<DissonanceSpeechSource>();
+            newSr.SpeechSource = source;
+
+            var provider = instance.GetComponent<StreamingAssetsLanguageModelProvider>()
+                          ?? instance.gameObject.AddComponent<StreamingAssetsLanguageModelProvider>();
+            provider.language = SystemLanguage.Spanish;
+            provider.languageModels = new List<StreamingAssetsLanguageModel>
+    {
+        new StreamingAssetsLanguageModel
+        {
+            language = SystemLanguage.Spanish,
+            path = "LanguageModels/" + modelName
+        }
+    };
+            newSr.LanguageModelProvider = provider;
+
+            newSr.Vocabulary = new List<string>();
+            addSpellsToVocabulary(newSr);
+
+            if (instance.SpellPages != null)
+            {
+                foreach (var p in instance.SpellPages) p?.ResetVoiceDetect();
+            }
+
+            newSr.ResultReady.RemoveAllListeners();
+            newSr.ResultReady.AddListener((Result res) =>
+            {
+                try
+                {
+                    tryresultMethod.Invoke(instance, new object[] { res.text ?? string.Empty });
+                }
+                catch (Exception e)
+                {
+                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Error invoking tryresult (resetmiclong): " + e);
+                }
+            });
+
+            newSr.ResultReady.AddListener((Result res) =>
+            {
+                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("res (resetmiclong): " + res.text);
+            });
+
+            yield return new WaitForSeconds(0.1f);
+            newSr.StartProcessing();
+        }
 
 
         // -------- Vocabulary --------
@@ -228,7 +311,7 @@ namespace MageArenaSpanishVoice.Patches
                 foreach (string item in kv.Key)
                 {
                     recognizer.Vocabulary.Add(item);
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning("Adding " + item + " to vocabulary");
+                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Adding " + item + " to vocabulary");
                 }
             }
 
@@ -237,7 +320,7 @@ namespace MageArenaSpanishVoice.Patches
                 foreach (string item2 in kv2.Value)
                 {
                     recognizer.Vocabulary.Add(item2);
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning("Adding " + item2 + " to vocabulary");
+                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Adding " + item2 + " to vocabulary");
                 }
             }
         }
@@ -283,27 +366,22 @@ namespace MageArenaSpanishVoice.Patches
             };
 
 
-        private static readonly AccessTools.FieldRef<VoiceControlListener, VoiceBroadcastTrigger> vbtRef =
-            AccessTools.FieldRefAccess<VoiceControlListener, VoiceBroadcastTrigger>("vbt");
-
         private static readonly MethodInfo restartsrMethod =
             AccessTools.Method(typeof(VoiceControlListener), "restartsr", null, null);
 
-        private static readonly string[] SrFieldNames = { "sr", "_sr", "recognizer", "speechRecognizer", "speechRec" };
+        private static readonly string[] SrFieldNames = { "sr" };
 
         private static SpeechRecognizer GetOrBindSpeechRecognizer(VoiceControlListener inst)
         {
             FieldInfo foundField = null;
-            foreach (var name in SrFieldNames)
+
+            var f = AccessTools.Field(inst.GetType(), "sr");
+            if (f != null && typeof(SpeechRecognizer).IsAssignableFrom(f.FieldType))
             {
-                var f = AccessTools.Field(inst.GetType(), name);
-                if (f != null && typeof(SpeechRecognizer).IsAssignableFrom(f.FieldType))
-                {
-                    var val = f.GetValue(inst) as SpeechRecognizer;
-                    if (val != null)
+                var val = f.GetValue(inst) as SpeechRecognizer;
+                if (val != null)
                         return val; 
-                    foundField = f; 
-                }
+                foundField = f; 
             }
 
             var sr = inst.GetComponent<SpeechRecognizer>() ??
@@ -316,5 +394,29 @@ namespace MageArenaSpanishVoice.Patches
 
             return sr;
         }
+        private static VoiceBroadcastTrigger GetOrBindVbt(VoiceControlListener inst)
+        {
+            FieldInfo foundField = null;
+
+            var f = AccessTools.Field(inst.GetType(), "vbt");
+            if (f != null && typeof(VoiceBroadcastTrigger).IsAssignableFrom(f.FieldType))
+            {
+                var val = f.GetValue(inst) as VoiceBroadcastTrigger;
+                if (val != null)
+                    return val; 
+                foundField = f; 
+            }
+
+            var vbt = inst.GetComponent<VoiceBroadcastTrigger>() ??
+                      inst.GetComponentInChildren<VoiceBroadcastTrigger>(true);
+
+            if (vbt != null && foundField != null)
+            {
+                foundField.SetValue(inst, vbt);
+            }
+
+            return vbt;
+        }
+
     }
 }

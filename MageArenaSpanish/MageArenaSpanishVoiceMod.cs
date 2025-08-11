@@ -1,9 +1,6 @@
 ﻿
-using System;
 using BepInEx;
-using UnityEngine;
 using HarmonyLib;
-using Recognissimo.Components;
 using BepInEx.Logging;
 
 
@@ -11,7 +8,7 @@ using BepInEx.Logging;
 namespace MageArenaSpanishVoiceMod
 {
 
-    [BepInPlugin("spanish.mage.arena", "Spanish Mod", "1.1.1")]
+    [BepInPlugin("spanish.mage.arena", "Spanish Mod", "1.1.2")]
     public class MageArenaSpanishVoiceMod : BaseUnityPlugin
     {
 
