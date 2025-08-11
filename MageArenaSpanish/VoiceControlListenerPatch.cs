@@ -15,7 +15,6 @@ namespace MageArenaSpanishVoice.Patches
     [HarmonyPatch(typeof(VoiceControlListener))]
     public static class VoiceControlListenerPatch
     {
-        // -------- Patches --------
 
         [HarmonyPatch("OnStartClient")]
         [HarmonyPrefix]
@@ -28,7 +27,6 @@ namespace MageArenaSpanishVoice.Patches
 
         private static IEnumerator CoWaitGetPlayer(VoiceControlListener __instance)
         {
-            // Espera a PlayerInventory como el original
             while (__instance.pi == null)
             {
                 if (Camera.main != null &&
@@ -43,23 +41,20 @@ namespace MageArenaSpanishVoice.Patches
             yield return null;
             yield return new WaitForSeconds(0.5f);
 
-            // 1) Setup del modelo (igual que el original). Tu patch del ctor de LanguageModel ya redirige la ruta.
             var setup = __instance.GetComponent<SetUpModelProvider>() ??
                         __instance.gameObject.AddComponent<SetUpModelProvider>();
             setup.Setup();
             yield return null;
 
-            // 2) Obtener SpeechRecognizer y añadir vocabulario
             var sr = GetOrBindSpeechRecognizer(__instance);
             if (sr == null)
             {
-                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("SpeechRecognizer no encontrado.");
+                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("SpeechRecognizer not found.");
                 yield break;
             }
 
             addSpellsToVocabulary(sr); // usa tu función existente
 
-            // 3) Suscribirse a ResultReady → llamar tryresult(res.text) como hace el juego
             sr.ResultReady.RemoveAllListeners(); // evita doble binding si se reinicia
             sr.ResultReady.AddListener((Result r) =>
             {
@@ -69,7 +64,7 @@ namespace MageArenaSpanishVoice.Patches
                 }
                 catch (Exception e)
                 {
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Error al invocar tryresult: " + e);
+                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Error invoking tryresult: " + e);
                 }
             });
 
@@ -80,10 +75,8 @@ namespace MageArenaSpanishVoice.Patches
                 t += Time.deltaTime;
             }
 
-            // 4) Arrancar el reconocedor
             sr.StartProcessing();
 
-            // 5) Healthcheck cada 30s (igual que el original)
             while (__instance.isActiveAndEnabled)
             {
                 yield return new WaitForSeconds(30f);
@@ -91,13 +84,10 @@ namespace MageArenaSpanishVoice.Patches
                 if (vbt != null && !vbt.IsTransmitting)
                 {
                     sr.StopProcessing();
-                    __instance.StartCoroutine((IEnumerator)restartsrMethod.Invoke(__instance, null)); // llamas al original
+                    __instance.StartCoroutine((IEnumerator)restartsrMethod.Invoke(__instance, null));
                 }
             }
         }
-
-
-
 
         private static string modelName = "vosk-model-small-es-0.42";
 
@@ -105,12 +95,11 @@ namespace MageArenaSpanishVoice.Patches
         [HarmonyPrefix]
         public static void LanguageModel_Ctor_Prefix(ref string path)
         {
-            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning("Cargando modelo español desde: " + path);
             string myPluginPath = MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Instance.Info.Location;
             string modDir = Path.GetDirectoryName(myPluginPath);
             string modPath = Path.Combine(modDir, "LanguageModels", modelName);
             path = modPath;
-            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning("Redirigido modelo a: " + path);
+            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Loading language model from: " + path);
 
         }
 
@@ -126,7 +115,6 @@ namespace MageArenaSpanishVoice.Patches
 
             if (string.IsNullOrWhiteSpace(res))
             {
-                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Hearing: <EMPTY>");
                 return false;
             }
 
@@ -134,25 +122,18 @@ namespace MageArenaSpanishVoice.Patches
             MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Hearing: " + res);
 
 
-            // 1) comandos directos (no dependen de páginas)
             foreach (var kv in spanishCommandMap)
             {
                 if (kv.Key.Any(keyword => res.Contains(keyword)))
                     kv.Value(__instance);
             }
 
-            // 2) iteración directa sobre TODAS las páginas (como antes)
             foreach (ISpellCommand spellPage in __instance.SpellPages)
             {
-                // nombre interno de la página
                 string pageName = spellPage.GetSpellName();
 
-                // a) usa el diccionario escalable: si el texto contiene alguna keyword española
-                //    y el nombre interno de la página coincide con la key → castea
                 foreach (var pair in spanishAdditionalCommandMap)
                 {
-                    // pair.Key = nombre interno (p.ej. "blink", "blast", "rock"...)
-                    // pair.Value = keywords en español para activar ese interno
                     bool hit = false;
                     foreach (var kw in pair.Value)
                     {
@@ -167,21 +148,16 @@ namespace MageArenaSpanishVoice.Patches
                     if (string.Equals(pageName, pair.Key, StringComparison.OrdinalIgnoreCase))
                     {
                         spellPage.TryCastSpell();
-                        // si quieres evitar dobles casteos en la misma página, descomenta:
-                        // break;
                     }
                 }
 
-                // b) fallback como el original: si el texto ya contiene el nombre del spell, castea
-                //    (útil si el usuario dice el nombre interno tal cual)
                 if (res.Contains(pageName.ToLowerInvariant()))
                 {
                     spellPage.TryCastSpell();
                 }
             }
 
-            // IMPORTANT: no reiniciar el reconocedor aquí
-            return false; // omitimos el original
+            return false;
         }
 
 
@@ -190,11 +166,10 @@ namespace MageArenaSpanishVoice.Patches
             var sr = GetOrBindSpeechRecognizer(inst);
             if (sr == null)
             {
-                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Sr es null al reiniciar");
+                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Sr is null");
                 yield break;
             }
 
-            // Parar → un frame → arrancar
             sr.StopProcessing();
             yield return null;
 
@@ -243,7 +218,7 @@ namespace MageArenaSpanishVoice.Patches
         }*/
 
 
-        // -------- Vocabulario en español --------
+        // -------- Vocabulary --------
         private static void addSpellsToVocabulary(SpeechRecognizer recognizer)
         {
             
@@ -318,7 +293,6 @@ namespace MageArenaSpanishVoice.Patches
 
         private static SpeechRecognizer GetOrBindSpeechRecognizer(VoiceControlListener inst)
         {
-            // 1) Probar campos comunes
             FieldInfo foundField = null;
             foreach (var name in SrFieldNames)
             {
@@ -327,16 +301,14 @@ namespace MageArenaSpanishVoice.Patches
                 {
                     var val = f.GetValue(inst) as SpeechRecognizer;
                     if (val != null)
-                        return val; // ya está asignado
-                    foundField = f; // recuerda un campo compatible para inyectar luego
+                        return val; 
+                    foundField = f; 
                 }
             }
 
-            // 2) Buscar el componente en la jerarquía
             var sr = inst.GetComponent<SpeechRecognizer>() ??
                      inst.GetComponentInChildren<SpeechRecognizer>(true);
 
-            // 3) Si lo encontramos y tenemos un campo compatible, inyectarlo
             if (sr != null && foundField != null)
             {
                 foundField.SetValue(inst, sr);
