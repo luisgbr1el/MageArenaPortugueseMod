@@ -115,7 +115,6 @@ namespace MageArenaSpanishVoice.Patches
             }
 
             res = res.ToLowerInvariant().Trim();
-            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Hearing: " + res);
 
 
             foreach (var kv in spanishCommandMap)
@@ -126,7 +125,6 @@ namespace MageArenaSpanishVoice.Patches
 
             var pages = __instance.SpellPages;
             var count = pages == null ? -1 : pages.Count;
-            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogWarning($"SpellPages count = {count}");
 
             foreach (ISpellCommand spellPage in __instance.SpellPages)
             {
@@ -291,11 +289,6 @@ namespace MageArenaSpanishVoice.Patches
                 }
             });
 
-            newSr.ResultReady.AddListener((Result res) =>
-            {
-                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("res (resetmiclong): " + res.text);
-            });
-
             yield return new WaitForSeconds(0.1f);
             newSr.StartProcessing();
         }
@@ -329,7 +322,7 @@ namespace MageArenaSpanishVoice.Patches
             new Dictionary<string[], Action<VoiceControlListener>>
             {
                 {
-                    new string[] { "bola", "fuego" }, // "fireball"
+                    new string[] { "bola de fuego" }, // "fireball"
                     v => v.CastFireball()
                 },
                 {
@@ -345,11 +338,11 @@ namespace MageArenaSpanishVoice.Patches
                     v => v.CastHole()
                 },
                 {
-                    new string[] { "misil", "mágico" }, // "magic missile"
+                    new string[] { "misil mágico", "misil magico" }, // "magic missile"
                     v => v.CastMagicMissle()
                 },
                 {
-                    new string[] { "espejo" }, // mirror
+                    new string[] { "espejito espejito" }, // mirror
                     v => v.ActivateMirror()
                 }
             };
@@ -359,8 +352,8 @@ namespace MageArenaSpanishVoice.Patches
             {
                 { "rock",        new[] { "roca", "piedra" } }, // rock
                 { "wisp",        new[] { "ánima", "luz" } }, // wisp
-                { "blast",       new[] { "ráfaga", "oscura", "rafaga" } },        // dark blast
-                { "divine",      new[] { "divina", "luz divina" } },   // divine light
+                { "blast",       new[] { "ráfaga oscura", "rafaga oscura" } },        // dark blast
+                { "divine",      new[] { "luz divina" } },   // divine light
                 { "blink",       new[] { "destello", "teletransporte", "parpadeo" } }, //blink
                 { "thunderbolt", new[] { "rayo", "trueno" } } //thunderbolt
             };
