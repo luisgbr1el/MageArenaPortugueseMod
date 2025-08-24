@@ -14,7 +14,7 @@ Este mod traduz os **casts de voz** de Mage Arena para o português, permitindo 
 
 ## 🗣️ **Casts suportados (comandos de voz)**
 
-| Feitiço (inglês)   | Casteo em português           | Também funciona (variantes)                    |
+| Feitiço (inglês)   | Cast em português           | Também funciona (variantes)                    |
 |--------------------|-------------------------------|-------------------------------------------------|
 | Fireball           | bola de fogo, fogo, chama     | chamas, fireball, fire, ball                   |
 | Freeze             | congelar, gelo                | freeze                                          |
