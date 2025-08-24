@@ -10,7 +10,7 @@ using Recognissimo;
 using Recognissimo.Components;
 using UnityEngine; 
 
-namespace MageArenaSpanishVoice.Patches
+namespace MageArenaPortugueseVoice.Patches
 {
     [HarmonyPatch(typeof(VoiceControlListener))]
     public static class VoiceControlListenerPatch
@@ -48,7 +48,7 @@ namespace MageArenaSpanishVoice.Patches
 
             if (sr == null)
             {
-                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("SpeechRecognizer not found.");
+                MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("SpeechRecognizer not found.");
                 yield break;
             }
 
@@ -63,7 +63,7 @@ namespace MageArenaSpanishVoice.Patches
                 }
                 catch (Exception e)
                 {
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Error invoking tryresult: " + e);
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("Error invoking tryresult: " + e);
                 }
             });
 
@@ -85,17 +85,17 @@ namespace MageArenaSpanishVoice.Patches
 
         }
 
-        private static string modelName = "vosk-model-small-es-0.42";
+        private static string modelName = "vosk-model-small-pt-0.3";
 
         [HarmonyPatch(typeof(LanguageModel), MethodType.Constructor, new Type[] { typeof(string) })]
         [HarmonyPrefix]
         public static void LanguageModel_Ctor_Prefix(ref string path)
         {
-            string myPluginPath = MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Instance.Info.Location;
+            string myPluginPath = MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Instance.Info.Location;
             string modDir = Path.GetDirectoryName(myPluginPath);
             string modPath = Path.Combine(modDir, "LanguageModels", modelName);
             path = modPath;
-            MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Loading language model from: " + path);
+            MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("Loading language model from: " + path);
 
         }
 
@@ -117,7 +117,7 @@ namespace MageArenaSpanishVoice.Patches
             res = res.ToLowerInvariant().Trim();
 
 
-            foreach (var kv in spanishCommandMap)
+            foreach (var kv in portugueseCommandMap)
             {
                 if (kv.Key.Any(keyword => res.Contains(keyword)))
                     kv.Value(__instance);
@@ -130,7 +130,7 @@ namespace MageArenaSpanishVoice.Patches
             {
                 string pageName = spellPage.GetSpellName();
 
-                foreach (var pair in spanishAdditionalCommandMap)
+                foreach (var pair in portugueseAdditionalCommandMap)
                 {
                     bool hit = false;
                     foreach (var kw in pair.Value)
@@ -164,7 +164,7 @@ namespace MageArenaSpanishVoice.Patches
             var sr = GetOrBindSpeechRecognizer(inst);
             if (sr == null)
             {
-                MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Sr is null");
+                MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("Sr is null");
                 yield break;
             }
 
@@ -235,7 +235,7 @@ namespace MageArenaSpanishVoice.Patches
             {
                 try { oldSr.StopProcessing(); }
                 catch (ObjectDisposedException) { }
-                catch (Exception e) { MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("StopProcessing old SR: " + e.Message); }
+                catch (Exception e) { MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("StopProcessing old SR: " + e.Message); }
             }
 
             try { SrField?.SetValue(instance, null); } catch { }
@@ -257,12 +257,12 @@ namespace MageArenaSpanishVoice.Patches
 
             var provider = instance.GetComponent<StreamingAssetsLanguageModelProvider>()
                           ?? instance.gameObject.AddComponent<StreamingAssetsLanguageModelProvider>();
-            provider.language = SystemLanguage.Spanish;
+            provider.language = SystemLanguage.Portuguese;
             provider.languageModels = new List<StreamingAssetsLanguageModel>
     {
         new StreamingAssetsLanguageModel
         {
-            language = SystemLanguage.Spanish,
+            language = SystemLanguage.Portuguese,
             path = "LanguageModels/" + modelName
         }
     };
@@ -285,7 +285,7 @@ namespace MageArenaSpanishVoice.Patches
                 }
                 catch (Exception e)
                 {
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogError("Error invoking tryresult (resetmiclong): " + e);
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("Error invoking tryresult (resetmiclong): " + e);
                 }
             });
 
@@ -299,34 +299,34 @@ namespace MageArenaSpanishVoice.Patches
         {
             
 
-            foreach (KeyValuePair<string[], Action<VoiceControlListener>> kv in spanishCommandMap)
+            foreach (KeyValuePair<string[], Action<VoiceControlListener>> kv in portugueseCommandMap)
             {
                 foreach (string item in kv.Key)
                 {
                     recognizer.Vocabulary.Add(item);
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Adding " + item + " to vocabulary");
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("Adding " + item + " to vocabulary");
                 }
             }
 
-            foreach (KeyValuePair<string, string[]> kv2 in spanishAdditionalCommandMap)
+            foreach (KeyValuePair<string, string[]> kv2 in portugueseAdditionalCommandMap)
             {
                 foreach (string item2 in kv2.Value)
                 {
                     recognizer.Vocabulary.Add(item2);
-                    MageArenaSpanishVoiceMod.MageArenaSpanishVoiceMod.Log.LogInfo("Adding " + item2 + " to vocabulary");
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("Adding " + item2 + " to vocabulary");
                 }
             }
         }
 
-        private static readonly Dictionary<string[], Action<VoiceControlListener>> spanishCommandMap =
+        private static readonly Dictionary<string[], Action<VoiceControlListener>> portugueseCommandMap =
             new Dictionary<string[], Action<VoiceControlListener>>
             {
                 {
-                    new string[] { "bola de fuego" }, // "fireball"
+                    new string[] { "bola de fogo", "fogo", "chama", "chamas" }, // "fireball"
                     v => v.CastFireball()
                 },
                 {
-                    new string[] { "congelar" }, // freeze
+                    new string[] { "congelar", "gelo" }, // freeze
                     v => v.CastFrostBolt()
                 },
                 {
@@ -334,28 +334,28 @@ namespace MageArenaSpanishVoice.Patches
                     v => v.CastWorm()
                 },
                 {
-                    new string[] { "salida" }, // hole
+                    new string[] { "saída" }, // hole
                     v => v.CastHole()
                 },
                 {
-                    new string[] { "misil mágico", "misil magico" }, // "magic missile"
+                    new string[] { "míssil mágico", "missil magico", "míssil", "missil" }, // "magic missile"
                     v => v.CastMagicMissle()
                 },
                 {
-                    new string[] { "espejito espejito" }, // mirror
+                    new string[] { "espelho" }, // mirror
                     v => v.ActivateMirror()
                 }
             };
 
-        private static readonly Dictionary<string, string[]> spanishAdditionalCommandMap =
+        private static readonly Dictionary<string, string[]> portugueseAdditionalCommandMap =
             new Dictionary<string, string[]>
             {
-                { "rock",        new[] { "roca", "piedra" } }, // rock
-                { "wisp",        new[] { "ánima", "luz" } }, // wisp
-                { "blast",       new[] { "ráfaga oscura", "rafaga oscura" } },        // dark blast
-                { "divine",      new[] { "luz divina" } },   // divine light
-                { "blink",       new[] { "destello", "teletransporte", "parpadeo" } }, //blink
-                { "thunderbolt", new[] { "rayo", "trueno" } } //thunderbolt
+                { "rock",        new[] { "rocha", "pedra" } }, // rock
+                { "wisp",        new[] { "lento", "lentidão" } }, // wisp
+                { "blast",       new[] { "explosão escura", "explosao escura", "explosão", "explosao" } },        // dark blast
+                { "divine",      new[] { "luz divina", "luz" } },   // divine light
+                { "blink",       new[] { "clarão", "clarao", "teletransporte", "piscar" } }, //blink
+                { "thunderbolt", new[] { "raio", "trovão", "relâmpago", "trovao", "relampago" } } //thunderbolt
             };
 
 
