@@ -322,7 +322,7 @@ namespace MageArenaPortugueseVoice.Patches
             new Dictionary<string[], Action<VoiceControlListener>>
             {
                 {
-                    new string[] { "bola de fogo", "fogo", "chama", "chamas" }, // "fireball"
+                    new string[] { "fogo", "chamas" }, // "fireball"
                     v => v.CastFireball()
                 },
                 {
@@ -338,7 +338,7 @@ namespace MageArenaPortugueseVoice.Patches
                     v => v.CastHole()
                 },
                 {
-                    new string[] { "míssil mágico", "missil magico", "míssil", "missil" }, // "magic missile"
+                    new string[] { "míssil mágico", "missil magico" }, // "magic missile"
                     v => v.CastMagicMissle()
                 },
                 {
@@ -350,12 +350,15 @@ namespace MageArenaPortugueseVoice.Patches
         private static readonly Dictionary<string, string[]> portugueseAdditionalCommandMap =
             new Dictionary<string, string[]>
             {
-                { "rock",        new[] { "rocha", "pedra" } }, // rock
-                { "wisp",        new[] { "lento", "lentidão" } }, // wisp
-                { "blast",       new[] { "explosão escura", "explosao escura", "explosão", "explosao" } },        // dark blast
-                { "divine",      new[] { "luz divina", "luz" } },   // divine light
-                { "blink",       new[] { "clarão", "clarao", "teletransporte", "piscar" } }, //blink
-                { "thunderbolt", new[] { "raio", "trovão", "relâmpago", "trovao", "relampago" } } //thunderbolt
+                { "rock",          new[] { "rocha", "pedra" } }, // rock
+                { "wisp",          new[] { "lento", "lentidão" } }, // wisp
+                { "blast",         new[] { "explosão escura", "explosao escura", "explosão", "explosao" } },        // dark blast
+                { "divine",        new[] { "luz divina", "luz" } },   // divine light
+                { "blink",         new[] { "clarão", "clarao", "teletransporte", "piscar" } }, //blink
+                { "thunderbolt",   new[] { "raio", "relâmpago", "relampago" } }, //thunderbolt
+                { "resurrection",  new[] { "ressurreição", "ressurreicao" } }, // resurrection
+                { "magic shield",  new[] { "escudo mágico", "escudo magico", "escudo" } }, // magic shield
+                { "echo location", new[] { "ecolocalização", "ecolocalizacao", "localização", "localizacao" } } // echo location
             };
 
 

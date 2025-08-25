@@ -1,6 +1,6 @@
 ﻿using BepInEx;
-using HarmonyLib;
 using BepInEx.Logging;
+using HarmonyLib;
 
 namespace MageArenaPortugueseVoiceMod
 {
@@ -8,7 +8,6 @@ namespace MageArenaPortugueseVoiceMod
     [BepInPlugin("com.luisgbr1el.MageArenaPortugueseVoiceMod", "MageArenaPortugueseVoiceMod", "1.0.0")]
     public class MageArenaPortugueseVoiceMod : BaseUnityPlugin
     {
-
         internal static MageArenaPortugueseVoiceMod Instance { get; private set; }
 
         internal static ManualLogSource Log
@@ -18,6 +17,7 @@ namespace MageArenaPortugueseVoiceMod
                 return MageArenaPortugueseVoiceMod.Instance._log;
             }
         }
+
         private void Awake()
         {
             this._log = base.Logger;
@@ -33,6 +33,4 @@ namespace MageArenaPortugueseVoiceMod
 
         private ManualLogSource _log;
     }
-
-
 }
