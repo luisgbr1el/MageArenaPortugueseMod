@@ -46,5 +46,5 @@ Quer adicionar suporte para outros dialetos, sinônimos ou feitiços personaliza
 
 ## 📦 **Instalação**
 
-1. **Baixe o mod** e coloque-o na pasta `BepInEx/plugins`.
+1. **Baixe a `.dll` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseVoiceMod/releases) do mod** e coloque-a na pasta `BepInEx/plugins`.
 2. Certifique-se de ter uma pasta chamada `BepInEx/plugins/LanguageModels`, com a pasta do modelo [`vosk-model-small-pt-0.3`](https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip) dentro dela.
