@@ -40,12 +40,12 @@ Este mod traduz todos os **textos** e os **casts de voz** de Mage Arena para o p
 ## 💬 **Gostaria de novos casts ou variantes?**
 
 Colabore!  
-Você pode abrir uma [issue](https://github.com/S3B4S5C/MageArenaPortugueseVoiceMod/issues) ou sugerir variantes e novas traduções para futuros lançamentos.  
+Você pode abrir uma [issue](https://github.com/luisgbr1el/MageArenaPortugueseMod/issues) ou sugerir variantes e novas traduções para futuros lançamentos.  
 Quer adicionar suporte para outros dialetos, sinônimos ou feitiços personalizados? Deixe seu comentário!
 
 ---
 
 ## 📦 **Instalação**
 
-1. **Baixe a `.dll` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseVoiceMod/releases) do mod** e coloque-a na pasta `BepInEx/plugins`.
+1. **Baixe a `.dll` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseMod/releases) do mod** e coloque-a na pasta `BepInEx/plugins`.
 2. Certifique-se de ter uma pasta chamada `BepInEx/plugins/LanguageModels`, com a pasta do modelo [`vosk-model-small-pt-0.3`](https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip) dentro dela.
