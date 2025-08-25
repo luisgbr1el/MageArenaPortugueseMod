@@ -16,18 +16,18 @@ Este mod traduz os **casts de voz** de Mage Arena para o português, permitindo 
 
 | Feitiço (inglês)       | Cast em português                       | Também funciona (variantes)                                     |
 |------------------------|----------------------------------------|------------------------------------------------------------------|
-| Fireball               | fogo, chamas, bola de fogo              | fireball, fire, ball                                            |
+| Fireball               | fogo, chamas                            | fireball, fire, ball                                            |
 | Freeze                 | congelar, gelo                          | freeze                                                          |
 | Wormhole (entrada)     | entrada                                 | worm                                                            |
 | Wormhole (saída)       | saída                                   | hole                                                            |
-| Magic Missile          | míssil mágico, missil                   | missil magico, magic, missile                                   |
+| Magic Missile          | míssil mágico                           | missil magico, magic, missile                                   |
 | Mirror                 | espelho                                 | mirror                                                          |
 | Rock                   | rocha, pedra                            | rock                                                            |
 | Wisp                   | lento, lentidão                         | wisp                                                            |
 | Dark Blast             | explosão escura, explosão               | explosao escura, explosao, dark, blast                          |
 | Divine Light           | luz divina, luz                         | divine                                                          |
 | Blink                  | clarão, teletransporte, piscar          | clarao, blink                                                   |
-| Thunderbolt            | raio, trovão, relâmpago                 | trovao, relampago, thunderbolt                                  |
+| Thunderbolt            | raio, relâmpago                         | relampago, thunderbolt                                          |
 | Resurrection           | ressurreição                            | ressureicao, resurrection                                       |
 | Magic Shield           | escudo mágico, escudo                   | magic shield                                                    |
 | Echo Location          | ecolocalização, localização             | echolocation, echo location                                     |
