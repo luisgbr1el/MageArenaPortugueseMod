@@ -48,7 +48,7 @@ namespace MageArenaPortugueseVoice.Patches
 
             if (sr == null)
             {
-                MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("SpeechRecognizer not found.");
+                MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogError("SpeechRecognizer not found.");
                 yield break;
             }
 
@@ -63,7 +63,7 @@ namespace MageArenaPortugueseVoice.Patches
                 }
                 catch (Exception e)
                 {
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("Error invoking tryresult: " + e);
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogError("Error invoking tryresult: " + e);
                 }
             });
 
@@ -91,11 +91,11 @@ namespace MageArenaPortugueseVoice.Patches
         [HarmonyPrefix]
         public static void LanguageModel_Ctor_Prefix(ref string path)
         {
-            string myPluginPath = MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Instance.Info.Location;
+            string myPluginPath = MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Instance.Info.Location;
             string modDir = Path.GetDirectoryName(myPluginPath);
             string modPath = Path.Combine(modDir, "LanguageModels", modelName);
             path = modPath;
-            MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("Loading language model from: " + path);
+            MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogInfo("Loading language model from: " + path);
 
         }
 
@@ -164,7 +164,7 @@ namespace MageArenaPortugueseVoice.Patches
             var sr = GetOrBindSpeechRecognizer(inst);
             if (sr == null)
             {
-                MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("Sr is null");
+                MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogError("Sr is null");
                 yield break;
             }
 
@@ -235,7 +235,7 @@ namespace MageArenaPortugueseVoice.Patches
             {
                 try { oldSr.StopProcessing(); }
                 catch (ObjectDisposedException) { }
-                catch (Exception e) { MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("StopProcessing old SR: " + e.Message); }
+                catch (Exception e) { MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogInfo("StopProcessing old SR: " + e.Message); }
             }
 
             try { SrField?.SetValue(instance, null); } catch { }
@@ -285,7 +285,7 @@ namespace MageArenaPortugueseVoice.Patches
                 }
                 catch (Exception e)
                 {
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogError("Error invoking tryresult (resetmiclong): " + e);
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogError("Error invoking tryresult (resetmiclong): " + e);
                 }
             });
 
@@ -304,7 +304,7 @@ namespace MageArenaPortugueseVoice.Patches
                 foreach (string item in kv.Key)
                 {
                     recognizer.Vocabulary.Add(item);
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("Adding " + item + " to vocabulary");
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogInfo("Adding " + item + " to vocabulary");
                 }
             }
 
@@ -313,7 +313,7 @@ namespace MageArenaPortugueseVoice.Patches
                 foreach (string item2 in kv2.Value)
                 {
                     recognizer.Vocabulary.Add(item2);
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseVoiceMod.Log.LogInfo("Adding " + item2 + " to vocabulary");
+                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogInfo("Adding " + item2 + " to vocabulary");
                 }
             }
         }

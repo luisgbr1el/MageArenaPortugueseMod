@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\TranslationManager.cs" />
-    <Compile Include="MageArenaPortugueseVoiceMod.cs" />
+    <Compile Include="MageArenaPortugueseMod.cs" />
     <Compile Include="Patches\MainMenuManagerPatch.cs" />
     <Compile Include="Patches\TMPTextTipsPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
