@@ -14,20 +14,23 @@ Este mod traduz os **casts de voz** de Mage Arena para o português, permitindo 
 
 ## 🗣️ **Casts suportados (comandos de voz)**
 
-| Feitiço (inglês)   | Cast em português           | Também funciona (variantes)                    |
-|--------------------|-------------------------------|-------------------------------------------------|
-| Fireball           | bola de fogo, fogo, chama     | chamas, fireball, fire, ball                   |
-| Freeze             | congelar, gelo                | freeze                                          |
-| Wormhole (entrada) | entrada                       | worm                                            |
-| Wormhole (saída)   | saída                         | hole                                            |
-| Magic Missile      | míssil mágico, míssil         | missil magico, missil, magic, missile          |
-| Mirror             | espelho                       | mirror                                          |
-| Rock               | rocha, pedra                  | rock                                            |
-| Wisp               | lento, lentidão               | wisp                                            |
-| Dark Blast         | explosão escura, explosão     | explosao escura, explosao, dark, blast         |
-| Divine Light       | luz divina, luz               | divine                                          |
-| Blink              | clarão, teletransporte        | clarao, piscar, blink                           |
-| Thunderbolt        | raio, trovão, relâmpago       | trovao, relampago, thunderbolt                 |
+| Feitiço (inglês)       | Cast em português                       | Também funciona (variantes)                                     |
+|------------------------|----------------------------------------|------------------------------------------------------------------|
+| Fireball               | fogo, chamas, bola de fogo              | fireball, fire, ball                                            |
+| Freeze                 | congelar, gelo                          | freeze                                                          |
+| Wormhole (entrada)     | entrada                                 | worm                                                            |
+| Wormhole (saída)       | saída                                   | hole                                                            |
+| Magic Missile          | míssil mágico, missil                   | missil magico, magic, missile                                   |
+| Mirror                 | espelho                                 | mirror                                                          |
+| Rock                   | rocha, pedra                            | rock                                                            |
+| Wisp                   | lento, lentidão                         | wisp                                                            |
+| Dark Blast             | explosão escura, explosão               | explosao escura, explosao, dark, blast                          |
+| Divine Light           | luz divina, luz                         | divine                                                          |
+| Blink                  | clarão, teletransporte, piscar          | clarao, blink                                                   |
+| Thunderbolt            | raio, trovão, relâmpago                 | trovao, relampago, thunderbolt                                  |
+| Resurrection           | ressurreição                            | ressureicao, resurrection                                       |
+| Magic Shield           | escudo mágico, escudo                   | magic shield                                                    |
+| Echo Location          | ecolocalização, localização             | echolocation, echo location                                     |
 
 > Você pode continuar usando os comandos originais em inglês, mas também funcionarão os nomes em português.
 
