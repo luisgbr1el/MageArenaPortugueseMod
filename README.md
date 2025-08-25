@@ -1,12 +1,12 @@
-# Mage Arena Portuguese Voice
+# Mage Arena Portuguese
 
-Este mod traduz os **casts de voz** de Mage Arena para o português, permitindo invocar feitiços com comandos em português, além dos comandos originais em inglês.
-
+Este mod traduz todos os **textos** e os **casts de voz** de Mage Arena para o português, permitindo invocar feitiços com comandos em português.
 ---
 
 ## ✨ **O que este mod faz?**
 
-- Permite usar nomes de feitiços em português ou inglês.
+- Permite usar nomes de feitiços em português.
+- Traduz os textos do jogo para português.
 - Compatível com a voz original do jogo.
 - Suporta modelos de linguagem em português (você deve incluir o modelo Recognissimo na pasta do seu mod, verifique a documentação do mod para detalhes técnicos).
 
