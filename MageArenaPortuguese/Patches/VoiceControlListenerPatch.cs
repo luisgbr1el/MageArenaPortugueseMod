@@ -203,7 +203,6 @@ namespace MageArenaPortugueseVoice.Patches
         [HarmonyPrefix]
         private static bool ResetMicPrefix(VoiceControlListener __instance)
         {
-            // igual que el original con cooldown
             if (ResetMicCooldownField != null)
             {
                 var last = (float)(ResetMicCooldownField.GetValue(__instance) ?? 0f);
@@ -259,13 +258,13 @@ namespace MageArenaPortugueseVoice.Patches
                           ?? instance.gameObject.AddComponent<StreamingAssetsLanguageModelProvider>();
             provider.language = SystemLanguage.Portuguese;
             provider.languageModels = new List<StreamingAssetsLanguageModel>
-    {
-        new StreamingAssetsLanguageModel
-        {
-            language = SystemLanguage.Portuguese,
-            path = "LanguageModels/" + modelName
-        }
-    };
+            {
+                new StreamingAssetsLanguageModel
+                {
+                    language = SystemLanguage.Portuguese,
+                    path = "LanguageModels/" + modelName
+                }
+            };
             newSr.LanguageModelProvider = provider;
 
             newSr.Vocabulary = new List<string>();
