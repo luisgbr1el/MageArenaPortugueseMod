@@ -24,27 +24,27 @@ Listas de casts de voz suportados pelo mod, incluindo plugins.
 ### Feitiços nativos do jogo:
 | Feitiço (inglês)       | Cast em português                       |
 |------------------------|-----------------------------------------|
-| Fireball               | fogo, chamas                            |
-| Freeze                 | congelar, gelo                          | 
-| Wormhole (entrada)     | entrada                                 |
-| Wormhole (saída)       | saída                                   |
-| Magic Missile          | míssil mágico                           |
-| Mirror                 | espelho espelho meu                     |
-| Rock                   | rocha, pedra                            |
-| Wisp                   | lento, lentidão                         |
-| Dark Blast             | explosão escura, explosão               |
-| Divine Light           | luz divina, luz                         |
-| Blink                  | clarão, teleporte, piscar               |
-| Thunderbolt            | raio, relâmpago                         |
+| Fireball               | "fogo" ou "chamas"                      |
+| Freeze                 | "congelar" ou "gelo"                    | 
+| Wormhole (entrada)     | "entrada"                               |
+| Wormhole (saída)       | "saída"                                 |
+| Magic Missile          | "míssil mágico"                         |
+| Mirror                 | "espelho, espelho meu"                  |
+| Rock                   | "rocha" ou "pedra"                      |
+| Wisp                   | "lento" ou "lentidão"                   |
+| Dark Blast             | "explosão escura" ou "explosão"         |
+| Divine Light           | "luz divina" ou "luz"                   |
+| Blink                  | "clarão", "teleporte" ou "piscar"       |
+| Thunderbolt            | "raio" ou "relâmpago"                   |
 
 ### Feitiços do mod/plugin [`MoreSpells`](https://thunderstore.io/c/mage-arena/p/D1GQ/MoreSpells/):
 | Feitiço (inglês)       | Cast em português                       |
 |------------------------|-----------------------------------------|
-| Resurrection           | ressurreição                            |
-| Magic Shield           | escudo mágico, escudo                   |
-| Echo Location          | ecolocalização, localização             |
-| The Eye of Hell        | olho do inferno, olho                   |
-| Hellfire               | chama infernal                          |
+| Resurrection           | "ressurreição"                          |
+| Magic Shield           | "escudo mágico" ou "escudo"             |
+| Echo Location          | "ecolocalização" ou "localização"       |
+| The Eye of Hell        | "olho do inferno" ou "olho"             |
+| Hellfire               | "chama infernal"                        |
 
 ---
 
