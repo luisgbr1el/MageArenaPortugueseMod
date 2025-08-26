@@ -5,7 +5,7 @@ using HarmonyLib;
 namespace MageArenaPortugueseVoiceMod
 {
 
-    [BepInPlugin("com.luisgbr1el.MageArenaPortugueseVoiceMod", "MageArenaPortugueseVoiceMod", "1.0.0")]
+    [BepInPlugin("com.luisgbr1el.MageArenaPortugueseMod", "MageArenaPortugueseMod", "1.0.0")]
     public class MageArenaPortugueseMod : BaseUnityPlugin
     {
         internal static MageArenaPortugueseMod Instance { get; private set; }
@@ -22,7 +22,7 @@ namespace MageArenaPortugueseVoiceMod
         {
             this._log = base.Logger;
             MageArenaPortugueseMod.Instance = this;
-            MageArenaPortugueseMod.Harmony = new Harmony("com.luisgbr1el.MageArenaPortugueseVoiceMod");
+            MageArenaPortugueseMod.Harmony = new Harmony("com.luisgbr1el.MageArenaPortugueseMod");
             MageArenaPortugueseMod.Harmony.PatchAll();
             MageArenaPortugueseMod.Log.LogWarning("Portuguese Translation Loaded");
             HarmonyLib.Harmony.DEBUG = true;
