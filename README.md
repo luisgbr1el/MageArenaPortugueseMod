@@ -1,21 +1,26 @@
-# Mage Arena Portuguese
 
-Este mod traduz todos os **textos** e os **casts de voz** de Mage Arena para o português, permitindo invocar feitiços com comandos em português.
+# Mage Arena Portuguese Mod
 
----
-
-## ✨ **O que este mod faz?**
-
-- Permite usar nomes de feitiços em português.
-- Traduz os textos do jogo para português.
-- Compatível com a voz original do jogo.
-- Suporta modelos de linguagem em português (você deve incluir o modelo Recognissimo na pasta do seu mod, verifique a documentação do mod para detalhes técnicos).
+> Mod para Mage Arena que traduz todos os **textos** e permite invocar feitiços por comandos de voz em português.
 
 ---
 
-## 🗣️ **Casts suportados (comandos de voz)**
+## ✨ **Funcionalidades**
 
-| Feitiço (inglês)       | Cast em português                       | Também funciona (variantes)                                     |
+- Tradução completa dos textos do jogo para português.
+- Permite usar comandos de voz em português para invocar feitiços.
+- Compatível com comandos de voz originais em inglês.
+- Suporte a variantes e sinônimos dos nomes dos feitiços.
+- Compatível com outros mods que não alteram o sistema de voz ou tradução.
+- Suporte a modelos de reconhecimento de voz em português (Recognissimo, Vosk).
+
+---
+
+## 🗣️ **Casts de Voz Suportados**
+Listas de casts de voz suportados pelo mod, incluindo plugins.
+### Feitiços nativos do jogo
+
+| Feitiço (inglês)       | Cast em português                       | Variantes/Sinônimos                                             |
 |------------------------|----------------------------------------|------------------------------------------------------------------|
 | Fireball               | fogo, chamas                            | fireball, fire, ball                                            |
 | Freeze                 | congelar, gelo                          | freeze                                                          |
@@ -29,23 +34,46 @@ Este mod traduz todos os **textos** e os **casts de voz** de Mage Arena para o p
 | Divine Light           | luz divina, luz                         | divine                                                          |
 | Blink                  | clarão, teletransporte, piscar          | clarao, blink                                                   |
 | Thunderbolt            | raio, relâmpago                         | relampago, thunderbolt                                          |
+
+### Feitiços do Plugin "MoreSpells"
+| Feitiço (inglês)       | Cast em português                       | Variantes/Sinônimos                                             |
+|------------------------|----------------------------------------|------------------------------------------------------------------|
 | Resurrection           | ressurreição                            | ressureicao, resurrection                                       |
 | Magic Shield           | escudo mágico, escudo                   | magic shield                                                    |
 | Echo Location          | ecolocalização, localização             | echolocation, echo location                                     |
 
-> Você pode continuar usando os comandos originais em inglês, mas também funcionarão os nomes em português.
+---
+
+## � **Compatibilidade**
+
+- Compatível com mods que não alteram o sistema de reconhecimento de voz ou tradução.
+- Caso utilize outros mods de tradução ou voz, pode haver conflitos. Recomenda-se testar individualmente.
 
 ---
 
-## 💬 **Gostaria de novos casts ou variantes?**
+## 💬 **Colabore!**
 
-Colabore!  
-Você pode abrir uma [issue](https://github.com/luisgbr1el/MageArenaPortugueseMod/issues) ou sugerir variantes e novas traduções para futuros lançamentos.  
-Quer adicionar suporte para outros dialetos, sinônimos ou feitiços personalizados? Deixe seu comentário!
+Sugira novos casts, variantes ou traduções:
+- Abra uma [issue](https://github.com/luisgbr1el/MageArenaPortugueseMod/issues)
+- Comente sobre dialetos, sinônimos ou feitiços personalizados para futuras versões.
 
 ---
 
 ## 📦 **Instalação**
 
-1. **Baixe a `.dll` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseMod/releases) do mod** e coloque-a na pasta `BepInEx/plugins`.
-2. Certifique-se de ter uma pasta chamada `BepInEx/plugins/LanguageModels`, com a pasta do modelo [`vosk-model-small-pt-0.3`](https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip) dentro dela.
+1. Baixe a `.dll` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseMod/releases) do mod e coloque-a na pasta `BepInEx/plugins`.
+2. Certifique-se de ter a pasta `BepInEx/plugins/LanguageModels` com o modelo [`vosk-model-small-pt-0.3`](https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip) dentro dela.
+
+---
+
+## 📚 **Documentação Técnica**
+
+- O mod utiliza Harmony para patching e Recognissimo/Vosk para reconhecimento de voz.
+- Para adicionar novos feitiços ou variantes, edite o arquivo de configuração ou contribua pelo GitHub.
+
+---
+
+## 🛠️ **Desenvolvimento & Contribuição**
+
+Pull requests e sugestões são bem-vindas!
+Consulte o código-fonte e documentação para detalhes sobre integração de novos comandos ou suporte a outros dialetos.
