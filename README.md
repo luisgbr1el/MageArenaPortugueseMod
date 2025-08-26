@@ -3,6 +3,8 @@
 
 > Mod para Mage Arena que traduz todos os **textos** e permite invocar feitiços por comandos de voz em português.
 
+Baseado no [MageArenaSpanishVoiceMod](https://github.com/S3B4S5C/MageArenaSpanishVoiceMod).
+
 ---
 
 ## ✨ **Funcionalidades**
