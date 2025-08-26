@@ -22,27 +22,29 @@ Baseado no [MageArenaSpanishVoiceMod](https://github.com/S3B4S5C/MageArenaSpanis
 Listas de casts de voz suportados pelo mod, incluindo plugins.
 
 ### Feitiços nativos do jogo:
-| Feitiço (inglês)       | Cast em português                       | Variantes/Sinônimos                                             |
-|------------------------|----------------------------------------|------------------------------------------------------------------|
-| Fireball               | fogo, chamas                            | fireball, fire, ball                                            |
-| Freeze                 | congelar, gelo                          | freeze                                                          |
-| Wormhole (entrada)     | entrada                                 | worm                                                            |
-| Wormhole (saída)       | saída                                   | hole                                                            |
-| Magic Missile          | míssil mágico                           | missil magico, magic, missile                                   |
-| Mirror                 | espelho                                 | mirror                                                          |
-| Rock                   | rocha, pedra                            | rock                                                            |
-| Wisp                   | lento, lentidão                         | wisp                                                            |
-| Dark Blast             | explosão escura, explosão               | explosao escura, explosao, dark, blast                          |
-| Divine Light           | luz divina, luz                         | divine                                                          |
-| Blink                  | clarão, teletransporte, piscar          | clarao, blink                                                   |
-| Thunderbolt            | raio, relâmpago                         | relampago, thunderbolt                                          |
+| Feitiço (inglês)       | Cast em português                       |
+|------------------------|-----------------------------------------|
+| Fireball               | fogo, chamas                            |
+| Freeze                 | congelar, gelo                          | 
+| Wormhole (entrada)     | entrada                                 |
+| Wormhole (saída)       | saída                                   |
+| Magic Missile          | míssil mágico                           |
+| Mirror                 | espelho espelho meu                     |
+| Rock                   | rocha, pedra                            |
+| Wisp                   | lento, lentidão                         |
+| Dark Blast             | explosão escura, explosão               |
+| Divine Light           | luz divina, luz                         |
+| Blink                  | clarão, teleporte, piscar               |
+| Thunderbolt            | raio, relâmpago                         |
 
 ### Feitiços do mod/plugin [`MoreSpells`](https://thunderstore.io/c/mage-arena/p/D1GQ/MoreSpells/):
-| Feitiço (inglês)       | Cast em português                       | Variantes/Sinônimos                                             |
-|------------------------|----------------------------------------|------------------------------------------------------------------|
-| Resurrection           | ressurreição                            | ressureicao, resurrection                                       |
-| Magic Shield           | escudo mágico, escudo                   | magic shield                                                    |
-| Echo Location          | ecolocalização, localização             | echolocation, echo location                                     |
+| Feitiço (inglês)       | Cast em português                       |
+|------------------------|-----------------------------------------|
+| Resurrection           | ressurreição                            |
+| Magic Shield           | escudo mágico, escudo                   |
+| Echo Location          | ecolocalização, localização             |
+| The Eye of Hell        | olho do inferno, olho                   |
+| Hellfire               | chama infernal                          |
 
 ---
 
