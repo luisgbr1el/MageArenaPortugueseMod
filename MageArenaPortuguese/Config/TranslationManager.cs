@@ -1,5 +1,4 @@
-﻿using Dissonance.Demo;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MageArenaPortuguese.Config
 {
@@ -9,6 +8,15 @@ namespace MageArenaPortuguese.Config
             = new Dictionary<string, Dictionary<string, string>>();
 
         private static bool isLoaded = false;
+
+        public enum InteractionType
+        {
+            Pegar,
+            Colocar,
+            Fazer,
+            Abrir,
+            Fechar
+        }
 
         // Dicas mostradas no jogo
         private static readonly Dictionary<string, string> tips = new Dictionary<string, string>
@@ -23,14 +31,20 @@ namespace MageArenaPortuguese.Config
             { "Controlling flagpoles around the map grants you resources and XP. [Press RMB to Continue]", "Dominar as bandeiras pelo mapa dá a você recursos e XP. [Pressione o botão direito do mouse para continuar]" },
             { "Stand Next to the flag pole to capture it.", "Fique ao lado da bandeira para capturá-la." },
             { "Press E to pickup the Frog and Log and place them on the crafting table to craft a Frog Spear.", "Pressione E para pegar o Sapo e o Tronco, e coloque-os na mesa de criação para criar uma Lança de Sapo." },
-            { "Equip your spellbook, press 1 to turn to the page Fireball. Then say the word \"Fireball\" to cast Fireball", "Equipe seu livro de feitiços e pressione 1 para abrir a página da Bola de Fogo. Então, diga \"fogo\" ou \"chamas\" para lançá-la." },
+            { "Equip your spellbook, press 1 to turn to the page Fireball. Then say the word \"Fireball\" to cast Fireball", "Equipe seu Livro de Feitiços e pressione 1 para abrir a página da Bola de Fogo. Então, diga \"fogo\" ou \"chamas\" para lançá-la." },
             { "Press 2 to turn to the page Frost Bolt. Then say the word \"Freeze\" to cast Frost Bolt", "Pressione 2 para abrir a página do Raio de Gelo. Então diga \"gelo\" ou \"congelar\" para lançá-lo." },
             { "Press 3 to turn to the page Worm Hole. Then say the word \"Worm\" to cast the first half of Worm Hole", "Pressione 3 para abrir a página do Buraco de Minhoca. Então diga \"entrada\" para lançar a primeira parte do Buraco de Minhoca." },
             { "Now move to a new location and say the word \"Hole\" to cast the second half of Worm Hole", "Agora vá até um novo local e diga \"saída\" para lançar a segunda parte do Buraco de Minhoca." },
             { "Press 4 to turn to the page Magic Missle. Then say the words \"Magic Missle\" to cast Magic Missle", "Pressione 4 para abrir a página do Míssil Mágico. Então diga \"míssil mágico\" para lançá-lo." },
             { "You have passed the Academy of Sorceries final examination. You may now exit the tutorial.", "Você passou no exame final da Academia de Feitiçaria. Agora pode sair do tutorial." },
+            { "A strong magical presence dispells your worm...", "Uma forte presença mágica dissipa a entrada do seu Buraco de Minhoca..." },
+            { "A strong magical presence dispells your hole...", "Uma forte presença mágica dissipa a saída do seu Buraco de Minhoca..." },
+            { "A surge of magical energy passes through you...", "Uma onda de energia mágica passa por você..." },
             { "Your spells grow stronger...", "Seus feitiços ficam mais fortes..." },
-            { "A strong magical presence dispells your worm...", "Uma forte presença mágica dissipa seu Buraco de Minhoca..." },
+            { "Your voice bellows from the mountain tops...", "Sua voz ecoa dos topos das montanhas..." },
+            { "Your joints feel like rubber...", "Suas articulações parecem borracha..." },
+            { "Your tounge gains a mind of its own...", "Sua língua ganha vida própria..." },
+            { "Your skin hardens like tree bark...", "Sua pele endurece como casca de árvore..." }
         };
 
         // Textos dos menus
@@ -138,25 +152,92 @@ namespace MageArenaPortuguese.Config
             { "Select Brush Size:", "Tamanho do pincel:" }
         };
 
+        // Interagíveis do jogo (itens, mesas de criação, etc)
+        private static readonly Dictionary<string, string> interactable = new Dictionary<string, string>
+        {
+            // Interações
+            { "Move to Close", "Mova-se para fechar" },
+            { "Read Crafting Manual", "Ler manual de criação" },
+            { "Speak to Soup Man", "Falar com o Homem-Sopa" },
+            { "SpeaK to Knight", "Falar com o Cavaleiro" },
+            { "Enter Mausoleum", "Entrar no Mausoléu" },
+            { "Exit Mausoleum", "Sair do Mausoléu" },
+            { "Mirror mirror...", "Espelho, espelho meu..." },
+            { "Trade Item", "Trocar Item" },
+            { "Item", "Item" },
+            { "Dore", "Porta" },
+
+            // Interagíveis
+            { "Chest", "Baú" },
+            { "the Portcullis", "a grade" },
+            { "Torn Page", "Folha Rasgada" },
+
+            // Itens
+            { "Bounce Mush", "Cogumelo Saltitante" },
+            { "Crystal", "Cristal" },
+            { "Pull Hilt of Excalibur", "Puxar Cabo da Excalibur" },
+            { "Log", "Tronco" },
+            { "RocK", "Pedra" },
+            { "Pull Shattered Blade of Excalibur", "Puxar Lâmina Estilhaçada da Excalibur" },
+            { "Toad", "Sapo" },
+
+            // Sopas
+            { "Crystal Soup", "Sopa de Cristal" },
+            { "Frog Soup", "Sopa de Sapo" },
+            { "Log Soup", "Sopa de Tronco" },
+            { "Mushroom Soup", "Sopa de Cogumelo" },
+            { "Rock Soup", "Sopa de Pedra" },
+
+            // Craftáveis
+            { "Boinger", "Saltador" },
+            { "Dart Frog", "Sapo Dardo" },
+            { "Excalibur", "Excalibur" },
+            { "Frog Balloon", "Balão de Sapo" },
+            { "Frog Spear", "Vareta de Sapo" },
+            { "Frogleather Blade", "Espada de Couro de Sapo" },
+            { "Fungal Walking Stick", "Bengala Fúngica" },
+            { "Golum", "Golem" },
+            { "Levitator", "Levitador" },
+            { "Mushroom Man", "Homem-Cogumelo" },
+            { "Ray of Shrink", "Raio Encolhedor" },
+            { "Silverseed Bramble", "Semente-de-Prata Espinhosa" },
+            { "Spore Frog", "Sapo de Esporos" },
+            { "The Orb", "Orbe" },
+            { "Thrumming Stone", "Pedra Vibrante" },
+            { "Walking Stick", "Bengala" },
+
+            // Ferramentas
+            { "BooK", "Livro de Feitiços" },
+            { "Torch", "Tocha" },
+            { "Weed of the Pipe", "Erva do Cachimbo" }
+        };
+
         private static void LoadTranslations()
         {
             translations["tips"] = tips;
             translations["menu"] = menu;
+            translations["interactable"] = interactable;
 
             isLoaded = true;
         }
 
-        public static string Get(string category, string key)
+        public static string Get(string category, string key, InteractionType? interactionType = null)
         {
             if (!isLoaded)
                 LoadTranslations();
 
             string normalizedKey = key.Trim();
+            string translation;
 
             if (translations.ContainsKey(category) && translations[category].ContainsKey(normalizedKey))
-                return translations[category][normalizedKey];
+                translation = translations[category][normalizedKey];
+            else
+                return key;
 
-            return key;
+            if (interactionType.HasValue)
+                return $"{interactionType} {translation}";
+
+            return translation;
         }
     }
 }

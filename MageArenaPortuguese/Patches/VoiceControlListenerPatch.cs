@@ -342,7 +342,7 @@ namespace MageArenaPortugueseVoice.Patches
                     v => v.CastMagicMissle()
                 },
                 {
-                    new string[] { "espelho" }, // mirror
+                    new string[] { "espelho meu" }, // mirror
                     v => v.ActivateMirror()
                 }
             };
@@ -350,15 +350,18 @@ namespace MageArenaPortugueseVoice.Patches
         private static readonly Dictionary<string, string[]> portugueseAdditionalCommandMap =
             new Dictionary<string, string[]>
             {
-                { "rock",          new[] { "rocha", "pedra" } }, // rock
-                { "wisp",          new[] { "lento", "lentidão" } }, // wisp
-                { "blast",         new[] { "explosão escura", "explosao escura", "explosão", "explosao" } },        // dark blast
-                { "divine",        new[] { "luz divina", "luz" } },   // divine light
+                // Feitiços nativos
                 { "blink",         new[] { "clarão", "clarao", "teletransporte", "piscar" } }, //blink
+                { "wisp",          new[] { "lento", "lentidão" } }, // wisp
+                { "divine",        new[] { "luz divina", "luz" } },   // divine light
                 { "thunderbolt",   new[] { "raio", "relâmpago", "relampago" } }, //thunderbolt
-                { "resurrection",  new[] { "ressurreição", "ressurreicao" } }, // resurrection
+                { "blast",         new[] { "explosão escura", "explosao escura", "explosão", "explosao" } },        // dark blast
+                { "rock",          new[] { "rocha", "pedra" } }, // rock
+
+                // Feitiços do Plugin "MoreSpells"
+                { "echo location", new[] { "ecolocalização", "ecolocalizacao", "localização", "localizacao" } }, // echo location
                 { "magic shield",  new[] { "escudo mágico", "escudo magico", "escudo" } }, // magic shield
-                { "echo location", new[] { "ecolocalização", "ecolocalizacao", "localização", "localizacao" } } // echo location
+                { "resurrection",  new[] { "ressurreição", "ressurreicao" } } // resurrection
             };
 
 
