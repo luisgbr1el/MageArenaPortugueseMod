@@ -190,7 +190,7 @@ namespace MageArenaPortuguese.Config
 
             // Craftáveis
             { "Boinger", "Saltador" },
-            { "Dart Frog", "Sapo Dardo" },
+            { "Dart Gun", "Sapo-Dardo" },
             { "Excalibur", "Excalibur" },
             { "Frog Balloon", "Balão de Sapo" },
             { "Frog Spear", "Vareta de Sapo" },
@@ -199,6 +199,7 @@ namespace MageArenaPortuguese.Config
             { "Golum", "Golem" },
             { "Levitator", "Levitador" },
             { "Mushroom Man", "Homem-Cogumelo" },
+            { "Mushroom Swerd", "Espada-Cogumelo" },
             { "Ray of Shrink", "Raio Encolhedor" },
             { "Silverseed Bramble", "Semente-de-Prata Espinhosa" },
             { "Spore Frog", "Sapo de Esporos" },

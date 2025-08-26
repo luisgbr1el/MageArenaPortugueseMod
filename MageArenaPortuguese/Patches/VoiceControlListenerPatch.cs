@@ -350,7 +350,7 @@ namespace MageArenaPortugueseVoice.Patches
             new Dictionary<string, string[]>
             {
                 // Feitiços nativos
-                { "blink",         new[] { "clarão", "clarao", "teletransporte", "piscar" } }, //blink
+                { "blink",         new[] { "clarão", "clarao", "teleporte", "piscar" } }, //blink
                 { "wisp",          new[] { "lento", "lentidão" } }, // wisp
                 { "divine",        new[] { "luz divina", "luz" } },   // divine light
                 { "thunderbolt",   new[] { "raio", "relâmpago", "relampago" } }, //thunderbolt
@@ -360,9 +360,10 @@ namespace MageArenaPortugueseVoice.Patches
                 // Feitiços do Plugin "MoreSpells"
                 { "echo location", new[] { "ecolocalização", "ecolocalizacao", "localização", "localizacao" } }, // echo location
                 { "magic shield",  new[] { "escudo mágico", "escudo magico", "escudo" } }, // magic shield
-                { "resurrection",  new[] { "ressurreição", "ressurreicao" } } // resurrection
+                { "resurrection",  new[] { "ressurreição", "ressurreicao" } }, // resurrection
+                { "the eye of hell",  new[] { "olho do inferno", "olho" } }, // the eye of hell
+                { "hellfire",  new[] { "chama infernal"  } }, // hellfire
             };
-
 
         private static readonly MethodInfo restartsrMethod =
             AccessTools.Method(typeof(VoiceControlListener), "restartsr", null, null);
