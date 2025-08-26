@@ -18,8 +18,8 @@
 
 ## 🗣️ **Casts de Voz Suportados**
 Listas de casts de voz suportados pelo mod, incluindo plugins.
-### Feitiços nativos do jogo
 
+### Feitiços nativos do jogo:
 | Feitiço (inglês)       | Cast em português                       | Variantes/Sinônimos                                             |
 |------------------------|----------------------------------------|------------------------------------------------------------------|
 | Fireball               | fogo, chamas                            | fireball, fire, ball                                            |
@@ -35,7 +35,7 @@ Listas de casts de voz suportados pelo mod, incluindo plugins.
 | Blink                  | clarão, teletransporte, piscar          | clarao, blink                                                   |
 | Thunderbolt            | raio, relâmpago                         | relampago, thunderbolt                                          |
 
-### Feitiços do Plugin "MoreSpells"
+### Feitiços do mod/plugin [`MoreSpells`](https://thunderstore.io/c/mage-arena/p/D1GQ/MoreSpells/):
 | Feitiço (inglês)       | Cast em português                       | Variantes/Sinônimos                                             |
 |------------------------|----------------------------------------|------------------------------------------------------------------|
 | Resurrection           | ressurreição                            | ressureicao, resurrection                                       |
