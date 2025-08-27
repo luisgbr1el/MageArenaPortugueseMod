@@ -213,11 +213,25 @@ namespace MageArenaPortuguese.Config
             { "Weed of the Pipe", "Erva do Cachimbo" }
         };
 
+        private static readonly Dictionary<string, string> rankings = new Dictionary<string, string>
+        {
+            { "Lackey", "Lacaio" },
+            { "Sputterer", "Gaguejador" },
+            { "Novice", "Novato" },
+            { "Apprentice", "Aprendiz" },
+            { "Savant", "Erudito" },
+            { "Master", "Mestre" },
+            { "Grand", "Grão-Mestre" },
+            { "Supreme", "Supremo" },
+            { "Archmagus", "Arqui-Mago" },
+            { "Prime", "Primordial" }
+        };
         private static void LoadTranslations()
         {
             translations["tips"] = tips;
             translations["menu"] = menu;
             translations["interactable"] = interactable;
+            translations["rankings"] = rankings;
 
             isLoaded = true;
         }
