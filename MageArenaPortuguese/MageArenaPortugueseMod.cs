@@ -5,7 +5,7 @@ using HarmonyLib;
 namespace MageArenaPortugueseVoiceMod
 {
 
-    [BepInPlugin("com.luisgbr1el.MageArenaPortugueseMod", "MageArenaPortugueseMod", "1.0.0")]
+    [BepInPlugin("com.luisgbr1el.MageArenaPortugueseMod", "MageArenaPortugueseMod", "1.0.2")]
     public class MageArenaPortugueseMod : BaseUnityPlugin
     {
         internal static MageArenaPortugueseMod Instance { get; private set; }

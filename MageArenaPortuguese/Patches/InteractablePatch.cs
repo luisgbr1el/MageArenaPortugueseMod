@@ -75,10 +75,12 @@ namespace MageArenaPortuguese.Patches
             else
             {
                 string key = __result.Trim();
-                if (loggedTexts.Add(key))
-                {
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (Item): \"{key}\"");
-                }
+
+                // Logs para debugging
+                //if (loggedTexts.Add(key))
+                //{
+                //    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (Item): \"{key}\"");
+                //}
             }
         }
     }

@@ -24,8 +24,9 @@ namespace MageArenaPortuguese.Patches
 
                 if (traduzido != original)
                     txt.text = traduzido;
-                else
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (Text): \"{original.Trim()}\"");
+                // Logs para debugging
+                //else
+                //    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (Text): \"{original.Trim()}\"");
             }
 
             TMP_Text[] textosTMP = GameObject.FindObjectsByType<TMP_Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -36,8 +37,9 @@ namespace MageArenaPortuguese.Patches
 
                 if (traduzido != original)
                     tmp.text = traduzido;
-                else
-                    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (TMP_Text): \"{original.Trim()}\"");
+                // Logs para debugging
+                //else
+                //    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (TMP_Text): \"{original.Trim()}\"");
             }
         }
 

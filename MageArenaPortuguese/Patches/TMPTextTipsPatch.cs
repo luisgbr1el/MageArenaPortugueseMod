@@ -22,8 +22,9 @@ namespace MageArenaPortuguese.Patches
 
             if (translated != value)
                 value = translated;
-            else
-                MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO: \"{value.Trim()}\"");
+            // Logs para debugging
+            //else
+            //    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO: \"{value.Trim()}\"");
         }
     }
 }
