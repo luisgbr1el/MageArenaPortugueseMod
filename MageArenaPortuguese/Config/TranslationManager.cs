@@ -226,6 +226,7 @@ namespace MageArenaPortuguese.Config
             { "Archmagus", "Arqui-Mago" },
             { "Prime", "Primordial" }
         };
+
         private static void LoadTranslations()
         {
             translations["tips"] = tips;
