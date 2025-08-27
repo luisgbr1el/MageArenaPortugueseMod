@@ -66,8 +66,19 @@ Sugira novos casts, variantes ou traduções:
 
 ## 📦 **Instalação**
 
-1. Baixe a `.dll` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseMod/releases) do mod e coloque-a na pasta `BepInEx/plugins`.
-2. Certifique-se de ter a pasta `BepInEx/plugins/LanguageModels` com o modelo [`vosk-model-small-pt-0.3`](https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip) dentro dela.
+1. Baixe o `.zip` da [última versão](https://github.com/luisgbr1el/MageArenaPortugueseMod/releases) do mod, e extraia a pasta `/MageArenaPortuguese` dentro da pasta `BepInEx/plugins`.
+2. Certifique-se de ter a pasta `/LanguageModels` com o modelo [`vosk-model-small-pt-0.3`](https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip) dentro dela, na pasta `/MageArenaPortuguese`.
+
+### Hierarquia dos arquivos:
+```txt
+  🗁 Mage Arena
+  └── 🗁 BepInEx
+      └── 🗁 plugins
+          └── 🗁 MageArenaPortuguese
+              ├── 🗁 LanguageModels
+              │    └── 🗁 vosk-model-small-pt-0.3
+              └── 🗐 MageArenaPortuguese.dll
+```
 
 ---
 
