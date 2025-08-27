@@ -49,10 +49,11 @@ Listas de casts de voz suportados pelo mod, incluindo plugins.
 ---
 
 ## � **Compatibilidade**
+> **Obs: Caso sejam instalados outros mods que adicionam mais feitiços ao jogo, podem ocorrer conflitos devido o casting dos mesmos não estarem mapeados em português por esse mod.
+Nesse caso, crie uma [issue](https://github.com/luisgbr1el/MageArenaPortugueseMod/issues) ou abra um Pull Request.**
 
 - Compatível com mods que não alteram o sistema de reconhecimento de voz ou tradução.
 - Caso utilize outros mods de tradução ou voz, pode haver conflitos. Recomenda-se testar individualmente.
-
 ---
 
 ## 💬 **Colabore!**
