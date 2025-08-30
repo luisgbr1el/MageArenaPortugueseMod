@@ -79,7 +79,7 @@ namespace MageArenaPortuguese.Patches
                 // Logs para debugging
                 //if (loggedTexts.Add(key))
                 //{
-                //    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (Item): \"{key}\"");
+                //    MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO (Item): \"{key}\"");
                 //}
             }
         }

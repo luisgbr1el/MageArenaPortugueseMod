@@ -2,7 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 
-namespace MageArenaPortugueseVoiceMod
+namespace MageArenaPortuguese
 {
 
     [BepInPlugin("com.luisgbr1el.MageArenaPortugueseMod", "MageArenaPortugueseMod", "1.0.2")]

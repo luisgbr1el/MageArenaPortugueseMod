@@ -24,7 +24,7 @@ namespace MageArenaPortuguese.Patches
                 value = translated;
             // Logs para debugging
             //else
-            //    MageArenaPortugueseVoiceMod.MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO: \"{value.Trim()}\"");
+            //    MageArenaPortugueseMod.Log.LogWarning($"NÃO TRADUZIDO: \"{value.Trim()}\"");
         }
     }
 }

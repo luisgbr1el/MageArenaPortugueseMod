@@ -95,7 +95,7 @@ namespace MageArenaPortuguese.Config
             { "Spacebar", "Barra de espaço" },
             { "Large", "Grande" },
             { "Leave Lobby", "Sair do Lobby" },
-            { "Join Sorcerers", "Juntar-se aos Feitiçeiros" },
+            { "Join Sorcerers", "Juntar-se aos Feiticeiros" },
             { "Join Warlocks", "Juntar-se aos Bruxos" },
             { "Copy LobbyID to\nClipboard", "Copiar ID" },
             { "Start Lobby", "Iniciar Lobby" },
